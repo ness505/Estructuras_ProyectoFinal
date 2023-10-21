@@ -1,20 +1,43 @@
-// mainClass.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
-
 #include <iostream>
-using namespace std;
-int main()
-{
-    cout << "Hello World!\n";
-    cout << "hola 2";
+#include <vector>
+
+class GrafoNoDirigido {
+private:
+    int numNodos;
+    std::vector<std::vector<int>> matrizAdyacencia;
+
+public:
+    GrafoNoDirigido(int n) : numNodos(n) {
+        matrizAdyacencia.resize(n, std::vector<int>(n, 0));
+    }
+
+    void agregarArista(int nodo1, int nodo2) {
+        if (nodo1 >= 0 && nodo1 < numNodos && nodo2 >= 0 && nodo2 < numNodos) {
+            matrizAdyacencia[nodo1][nodo2] = 1;
+            matrizAdyacencia[nodo2][nodo1] = 1; // Grafo no dirigido, así que también agregamos la conexión en el otro sentido
+        }
+    }
+
+    void imprimirMatrizAdyacencia() {
+        std::cout << "Matriz de Adyacencia:" << std::endl;
+        for (int i = 0; i < numNodos; i++) {
+            for (int j = 0; j < numNodos; j++) {
+                std::cout << matrizAdyacencia[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+};
+
+int main() {
+    int numNodos = 4;
+    GrafoNoDirigido grafo(numNodos);
+
+    grafo.agregarArista(0, 1);
+    grafo.agregarArista(0, 2);
+    grafo.agregarArista(1, 3);
+
+    grafo.imprimirMatrizAdyacencia();
+
+    return 0;
 }
-
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
