@@ -181,7 +181,7 @@ int main() {
     grafoDirigido.recorrerGrafoAnchura(0);
     grafoDirigido.recorrerGrafoProfundidad(0);
 
-
+    cout << endl;
     return 0;
 }
 
