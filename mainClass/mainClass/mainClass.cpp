@@ -180,6 +180,8 @@ int main() {
     grafoDirigido.imprimirMatrizAdyacencia();
     grafoDirigido.recorrerGrafoAnchura(0);
     grafoDirigido.recorrerGrafoProfundidad(0);
+
+
     return 0;
 }
 
